@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const connection = require("./database");
 const registerRouter = require("./routers/registerRouter");
+const loginRouter = require("./routers/loginRouter");
 const usersRouter = require("./routers/usersRouter");
 const blogsRouter = require("./routers/blogsRouter");
 const authMiddleware = require("./middlewares/authMiddleware");
@@ -12,6 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use("/api", registerRouter);
+app.use("/api", loginRouter);
 app.use("/api", usersRouter);
 app.use("/api", authMiddleware, blogsRouter);
 
@@ -20,6 +22,8 @@ app.get("/", (req, res) => {
 		message: "home"
 	});
 });
+
+connectThenListen();
 
 async function connectThenListen() {
 	try {

@@ -2,11 +2,11 @@ const jwt = require("jsonwebtoken");
 const UserModel = require("../models/UserModel");
 require("dotenv").config();
 
-async function authMiddleware(res, res, next) {
+async function authMiddleware(req, res, next) {
 	try {
 		const token = req.get("authorization");
-		const user = jwt.verify(token, process.env.SECRET);
-		const userDoc = await UserModel.findOne(user);
+		const { userId } = jwt.verify(token, process.env.SECRET);
+		const userDoc = await UserModel.findOne({ _id: userId });
 		if (userDoc) {
 			next();
 		} else {

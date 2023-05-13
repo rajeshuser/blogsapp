@@ -1,2 +1,88 @@
 ###
 GET http://localhost:5000
+
+
+###
+GET http://localhost:5000/api/users
+
+###
+POST http://localhost:5000/api/register
+Content-Type: application/json
+
+{
+	"username": "jane",
+	"avatar": "https://www.bing.com/th?id=OIP.E2zFDYn5F-6Lggs5u6qY1AHaHa&w=150&h=150&c=8&rs=1&qlt=90&o=6&pid=3.1&rm=2",
+	"email": "jane@gmail.com",
+	"password": "jane"
+}
+
+###
+POST http://localhost:5000/api/login
+Content-Type: application/json
+
+{
+	"email": "hero@gmail.com",
+	"password": "newHero"
+}
+
+###
+POST http://localhost:5000/api/users/645f5c3a0e1085fa83b77401/reset
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDVmNWMzYTBlMTA4NWZhODNiNzc0MDEiLCJpYXQiOjE2ODM5NzI1NTZ9.UQY26fRY-3SFmYu4TSeHeSGLS2YhPNhrAR5hITrlZQc
+
+{
+	"currentPassword": "hero",
+	"newPassword": "newHero"
+}
+
+###
+GET http://localhost:5000/api/blogs
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDVmNWMzYTBlMTA4NWZhODNiNzc0MDEiLCJpYXQiOjE2ODM5NzI1NTZ9.UQY26fRY-3SFmYu4TSeHeSGLS2YhPNhrAR5hITrlZQc
+
+
+###
+POST http://localhost:5000/api/blogs
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDVmNWMzYTBlMTA4NWZhODNiNzc0MDEiLCJpYXQiOjE2ODM5NzI1NTZ9.UQY26fRY-3SFmYu4TSeHeSGLS2YhPNhrAR5hITrlZQc
+
+{
+	"username": "bmw",
+	"title": "Black mosh",
+	"content": "he started slowly down the mountain, deciding that he would, that very night, satisfy his curiosity about the man-house. In the meantime, he would go down into the canyon and get a cool drink, after which he would visit some berry patches just over the ridge, and explore among the foothills a bit before his nap-time, which always came just after the sun had walked past the middle of the sky. At that period of the day the sun’s warm rays seemed to cast a sleepy spell over the silent mountainside, so all of the animals, with one accord, had decided it should be the hour for their mid-day sleep.",
+	"category" : "Tech",
+	"date" : "2089-06-01",
+	"likes" : 4,
+	"comments" : [{"username" : "jane", "content" : "Good One"}, {"username" : "bob", "content" : "Loved It!"}]
+}
+
+###
+PATCH http://localhost:5000/api/blogs/645f65d504d3a3cf27abfe26
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDVmNWMzYTBlMTA4NWZhODNiNzc0MDEiLCJpYXQiOjE2ODM5NzI1NTZ9.UQY26fRY-3SFmYu4TSeHeSGLS2YhPNhrAR5hITrlZQc
+
+{
+	"title": "Black mamba"
+}
+
+
+###
+PATCH http://localhost:5000/api/blogs/645f65d504d3a3cf27abfe26
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDVmNWMzYTBlMTA4NWZhODNiNzc0MDEiLCJpYXQiOjE2ODM5NzI1NTZ9.UQY26fRY-3SFmYu4TSeHeSGLS2YhPNhrAR5hITrlZQc
+
+{
+	"comments": [
+      {
+        "username": "Jane",
+        "content": "Good One",
+        "_id": "645f65d504d3a3cf27abfe27"
+      }
+    ]
+}
+
+
+###
+DELETE http://localhost:5000/api/blogs/645f65d504d3a3cf27abfe26
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NDVmNWMzYTBlMTA4NWZhODNiNzc0MDEiLCJpYXQiOjE2ODM5NzI1NTZ9.UQY26fRY-3SFmYu4TSeHeSGLS2YhPNhrAR5hITrlZQc

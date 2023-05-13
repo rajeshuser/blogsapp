@@ -37,13 +37,14 @@ blogsRouter.patch("/blogs/:id", async (req, res) => {
 	try {
 		const { id } = req.params;
 		const update = req.body;
-		const blogDoc = await BlogModel.fineOneAndUpdate({ _id: id }, update);
+		const blogDoc = await BlogModel.findOneAndUpdate({ _id: id }, update);
 		res.send({
 			message: "blog is updated"
 		});
 	} catch (error) {
 		res.send({
-			error: error.message
+			error: error.message,
+			type: typeof BlogModel
 		});
 	}
 });
@@ -51,7 +52,7 @@ blogsRouter.patch("/blogs/:id", async (req, res) => {
 blogsRouter.delete("/blogs/:id", async (req, res) => {
 	try {
 		const { id } = req.params;
-		const blogDoc = await BlogModel.fineOneAndDelete({ _id: id });
+		const blogDoc = await BlogModel.findOneAndDelete({ _id: id });
 		res.send({
 			message: "blog is deleted"
 		});
@@ -65,13 +66,15 @@ blogsRouter.delete("/blogs/:id", async (req, res) => {
 blogsRouter.patch("/blogs/:id/like", async (req, res) => {
 	try {
 		const { id } = req.params;
-		const blogDoc = await BlogModel.fineOneAndDelete({ _id: id });
+		const update = req.body;
+		const blogDoc = await BlogModel.findOneAndUpdate({ _id: id }, update);
 		res.send({
-			message: "blog is deleted"
+			message: "blog is updated"
 		});
 	} catch (error) {
 		res.send({
-			error: error.message
+			error: error.message,
+			type: typeof BlogModel
 		});
 	}
 });
@@ -79,13 +82,15 @@ blogsRouter.patch("/blogs/:id/like", async (req, res) => {
 blogsRouter.patch("/blogs/:id/comment", async (req, res) => {
 	try {
 		const { id } = req.params;
-		const blogDoc = await BlogModel.fineOneAndDelete({ _id: id });
+		const update = req.body;
+		const blogDoc = await BlogModel.findOneAndUpdate({ _id: id }, update);
 		res.send({
-			message: "blog is deleted"
+			message: "blog is updated"
 		});
 	} catch (error) {
 		res.send({
-			error: error.message
+			error: error.message,
+			type: typeof BlogModel
 		});
 	}
 });

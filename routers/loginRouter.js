@@ -1,25 +1,24 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
-const jst = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
 const UserModel = require("../models/UserModel");
 require("dotenv").config();
 
 const loginRouter = express.Router();
 
-loginRoute.post("/login", async (req, res) => {
+loginRouter.post("/login", async (req, res) => {
 	try {
 		const user = req.body;
-		const userDoc = await UserModel.findOne(user);
-		if (userDoc) {
-			const token = jwt.sign(user, process.env.SECRET);
-			res.send({
-				message: token
-			});
-		} else {
-			res.send({
-				error: "wrong credentials"
-			});
+		const userDoc = await UserModel.findOne({ email: user.email });
+		if (!userDoc) {
+			return res.send({ error: "user not found" });
 		}
+		const areSame = await bcrypt.compare(user.password, userDoc.password);
+		if (areSame) {
+			const token = jwt.sign({ userId: userDoc._id }, process.env.SECRET);
+			return res.send({ token });
+		}
+		res.send({ error: "wrong password" });
 	} catch (error) {
 		res.send({
 			error: error.message
